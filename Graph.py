@@ -10,6 +10,9 @@ class Graph:
         self.hamming_matrix = None
         self.tree_built = False
 
+        for genome_num in range(len(self.genome_list)):
+            self.genome_list[genome_num].genome_num = genome_num
+
     def TakeTime(self, genome):
         return genome.sample_time
 
@@ -22,7 +25,7 @@ class Graph:
             for second_genome_num in range(first_genome_num+1, matrix_size):
                 #Hamming on the diagonal is zero and the matrix is symmetrical
                 self.hamming_matrix[first_genome_num][second_genome_num] = \
-                    hammingDistance(self.genome_list[first_genome_num], self. genome_list[second_genome_num])
+                    hammingDistance(self.genome_list[first_genome_num], self.genome_list[second_genome_num])
                 self.hamming_matrix[second_genome_num][first_genome_num] = self.hamming_matrix[first_genome_num][second_genome_num]
 
     def GetPrecomputedHammingDistance(self, first_genome_num, second_genome_num):
@@ -71,14 +74,14 @@ class Graph:
             print("Build the tree first")
             raise ValueError
         for genome in self.genome_list:
-            if genome.chosen_parent != None and genome.genome_num != 0:
+            if genome.chosen_parent == None and genome.genome_num != 0:
                 print("Some genome, which is not the first one is the root. "
                       "That means, that we have several subtrees in the genealogy. The package cannot process it yet, exiting.")
                 raise ValueError
-            if genome.sample_time < genome.chosen_parent.sample_time:
+            if genome.chosen_parent != None and genome.sample_time < genome.chosen_parent.sample_time:
                 print("Genome has its parent sampled later, than him. It is impossible")
                 raise ValueError
-            if (genome.sample_time == genome.chosen_parent.sample_time) and (genome.genome_num >= genome.chosen_parent.genome_num):
+            if genome.chosen_parent != None and (genome.sample_time == genome.chosen_parent.sample_time) and (genome.genome_num >= genome.chosen_parent.genome_num):
                 print("There seems to be a problem with incostintency of tackling the genones with the same time. Proceed with caution")
         print("The genealogy seems to be a tree-like structure with correct edges")
 
