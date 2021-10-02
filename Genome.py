@@ -1,11 +1,14 @@
+import sys
+
+
 class Genome:
-    def __init__(self, genome_string, sample_time):
+    def __init__(self, genome_string, sample_time, genome_num):
         self.genome_string = genome_string
         self.sample_time = sample_time
-        self.suitable_parents = []
-        self.suitable_children = []
         self.chosen_parent = None
-        self.chosen_child = None
+        self.distance_to_parent = sys.maxsize
+        self.genome_num = genome_num
+
 
     def printGenome(self):
         print('Genome string:', self.genome_string, 'Sampled at time', self.sample_time)
