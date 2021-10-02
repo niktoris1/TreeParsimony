@@ -11,9 +11,9 @@ def generateGenome(length = 10, symbols = "0123", time_limits = [0, 1], genome_n
     return Genome(generateString(length, symbols), random.uniform(time_limits[0], time_limits[1]), None)
 
 
-number_of_genomes = 100
-length = 10
-symbols = "01"
+number_of_genomes = 200 # the running time depends qudraticaly
+length = 3000 # the running time depends linearly
+symbols = "ATCG"
 time_limits = [0, 100]
 
 
@@ -26,7 +26,7 @@ for i in range(number_of_genomes):
 
 graph = Graph(list_of_genomes)
 graph.BuildHammingMatrix()
-graph.BuildOptimalTree(allowed_max_distance=100)
+graph.BuildOptimalTree(allowed_max_distance=30000)
 graph.CheckIfGenealogyIsTree()
 parsimony_score = graph.GetOveallParsimonyScore()
 print("Parsimony score equals", parsimony_score)

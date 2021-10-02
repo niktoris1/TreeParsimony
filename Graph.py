@@ -17,6 +17,8 @@ class Graph:
         return genome.sample_time
 
     def BuildHammingMatrix(self):
+
+        time1 = time.time()
         matrix_size = len(self.genome_list)
 
         self.hamming_matrix = [[0 for i in range(matrix_size)] for j in range(matrix_size)]
@@ -27,6 +29,9 @@ class Graph:
                 self.hamming_matrix[first_genome_num][second_genome_num] = \
                     hammingDistance(self.genome_list[first_genome_num], self.genome_list[second_genome_num])
                 self.hamming_matrix[second_genome_num][first_genome_num] = self.hamming_matrix[first_genome_num][second_genome_num]
+
+        time2 = time.time()
+        print("Hamming matrix built in", time2 - time1, "seconds")
 
     def GetPrecomputedHammingDistance(self, first_genome_num, second_genome_num):
         if self.hamming_matrix == None:
@@ -54,7 +59,7 @@ class Graph:
 
         time_finish = time.time()
 
-        print("Tree build in", time_finish-time_start, "seconds")
+        print("Tree built in", time_finish-time_start, "seconds")
 
     def GetOveallParsimonyScore(self):
         if self.tree_built == False:
