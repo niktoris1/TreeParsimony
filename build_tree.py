@@ -11,8 +11,8 @@ def generateGenome(length = 10, symbols = "0123", time_limits = [0, 1], genome_n
     return Genome(generateString(length, symbols), random.uniform(time_limits[0], time_limits[1]), None)
 
 
-number_of_genomes = 200 # the running time depends qudraticaly
-length = 3000 # the running time depends linearly
+number_of_genomes = 100 # the running time depends qudraticaly
+length = 30000 # the running time depends linearly
 symbols = "ATCG"
 time_limits = [0, 100]
 
