@@ -2,6 +2,7 @@ from Graph import Graph
 from Genome import Genome
 
 import random
+import scipy
 
 def generateGenome(length = 10, symbols = "0123", time_limits = [0, 1], genome_num = None):
 
@@ -13,7 +14,7 @@ def generateGenome(length = 10, symbols = "0123", time_limits = [0, 1], genome_n
 
 number_of_genomes = 100 # the running time depends qudraticaly
 length = 30000 # the running time depends linearly
-symbols = "ATCG"
+symbols = "ACGT"
 time_limits = [0, 100]
 
 
